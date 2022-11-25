@@ -17,6 +17,9 @@ class RegisterFragment: Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 GreenLabTheme {
+                    RegisterScreen {
+
+                    }
                 }
             }
         }

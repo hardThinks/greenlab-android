@@ -18,15 +18,16 @@ val blueLight = Color(R.color.secondaryVariant)
 
 val LightColors = lightColors(
     primary = green,
-    primaryVariant = greenDark,
     onPrimary = white,
-    surface = white,
-    onSurface = black
+    secondary = blueLight,
+    onSecondary = black,
+    background = green,
+    onBackground = white
 )
 
 val DarkColors = darkColors(
     primary = greenDark,
     surface = blue,
     onSurface = white,
-    onPrimary = white,
+    onPrimary = white
 )

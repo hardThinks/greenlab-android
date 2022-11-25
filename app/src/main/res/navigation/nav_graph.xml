@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/onboardFragment">
+    app:startDestination="@id/registerFragment">
 
     <fragment
         android:id="@+id/onboardFragment"
@@ -24,4 +24,12 @@
         android:id="@+id/resultFragment"
         android:name="ru.greenlab.quiz.ui.result.ResultFragment"
         android:label="ResultFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="ru.greenlab.quiz.ui.register.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_onboardFragment"
+            app:destination="@id/onboardFragment" />
+    </fragment>
 </navigation>
