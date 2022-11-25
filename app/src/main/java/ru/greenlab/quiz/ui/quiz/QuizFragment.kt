@@ -1,4 +1,4 @@
-package ru.greenlab.quiz.ui.onboarding
+package ru.greenlab.quiz.ui.quiz
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OnboardFragment: Fragment() {
+class QuizFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,7 +17,6 @@ class OnboardFragment: Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                OnBoardScreen()
             }
         }
     }
