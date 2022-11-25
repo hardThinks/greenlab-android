@@ -25,11 +25,12 @@ import ru.greenlab.quiz.ui.theme.typography
 
 @Composable
 fun RegisterScreen(
-    onSubmit: () -> Unit
+    viewModel: RegisterViewModel,
+    onSubmit: () -> Unit,
 ) {
-    var inputName by remember { mutableStateOf("") }
-    var inputNumber by remember { mutableStateOf("") }
-    var inputCity by remember { mutableStateOf("") }
+    var inputName by remember { viewModel.userName }
+    var inputNumber by remember { viewModel.userNumber }
+    var inputCity by remember { viewModel.userCity }
 
     Column(
         modifier = Modifier
@@ -121,18 +122,18 @@ fun InputField(
 }
 
 
-@Composable
-@Preview(showSystemUi = true)
-private fun RegisterScreenPreview_Light() {
-    GreenLabTheme {
-        RegisterScreen() {}
-    }
-}
-
-@Composable
-@Preview(showSystemUi = true, uiMode = UI_MODE_NIGHT_YES)
-private fun RegisterScreenPreview_Dark() {
-    GreenLabTheme {
-        RegisterScreen() {}
-    }
-}
+//@Composable
+//@Preview(showSystemUi = true)
+//private fun RegisterScreenPreview_Light() {
+//    GreenLabTheme {
+//        RegisterScreen() {}
+//    }
+//}
+//
+//@Composable
+//@Preview(showSystemUi = true, uiMode = UI_MODE_NIGHT_YES)
+//private fun RegisterScreenPreview_Dark() {
+//    GreenLabTheme {
+//        RegisterScreen() {}
+//    }
+//}
