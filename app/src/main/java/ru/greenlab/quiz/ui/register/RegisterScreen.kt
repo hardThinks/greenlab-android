@@ -1,7 +1,9 @@
 package ru.greenlab.quiz.ui.register
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.widget.ImageButton
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,9 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ru.greenlab.quiz.R
 import ru.greenlab.quiz.ui.theme.GreenLabTheme
+import ru.greenlab.quiz.ui.theme.green
 import ru.greenlab.quiz.ui.theme.typography
+import ru.greenlab.quiz.ui.theme.white
 
 @Composable
 fun RegisterScreen(
@@ -83,14 +88,11 @@ fun RegisterButton(
     Button(
         modifier = modifier,
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = MaterialTheme.colors.primary,
-            contentColor = MaterialTheme.colors.onPrimary
-        )
     ) {
         Text(
             text = "Зарегистрировать",
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.h5
         )
     }
 }

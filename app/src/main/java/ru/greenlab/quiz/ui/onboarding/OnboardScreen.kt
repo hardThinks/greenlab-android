@@ -10,7 +10,7 @@ import ru.greenlab.quiz.ui.theme.GreenLabTheme
 @Composable
 fun OnBoardScreen() {
     Row {
-
+        
     }
 }
 

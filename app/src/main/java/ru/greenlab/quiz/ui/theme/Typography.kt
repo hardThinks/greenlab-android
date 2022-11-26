@@ -1,6 +1,8 @@
 package ru.greenlab.quiz.ui.theme
 
 import androidx.compose.material.Typography
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -15,5 +17,8 @@ private val appFontFamily = FontFamily(
 )
 
 val typography = Typography(
-    defaultFontFamily = appFontFamily
+    defaultFontFamily = appFontFamily,
+    button = TextStyle(
+        color = Color.Unspecified
+    )
 )
