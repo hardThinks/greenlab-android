@@ -1,9 +1,9 @@
 package ru.greenlab.quiz.ui.quiz
 
 object Answers {
-    const val yes       = "yes"
-    const val mostlyYes = "mostly_yes"
-    const val dontKnow  = "dont_know"
-    const val mostlyNo  = "mostly_no"
-    const val no        = "no"
+    val yes       = listOf("yes", "Да")
+    val mostlyYes = listOf("mostly_yes", "Скорее да")
+    val dontKnow  = listOf("dont_know", "Не знаю")
+    val mostlyNo  = listOf("mostly_no", "Скорее нет")
+    val no        = listOf("no", "Нет")
 }

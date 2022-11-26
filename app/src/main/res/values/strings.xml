@@ -8,4 +8,6 @@
     <string name="onboard_directions">Наши компетенции</string>
     <string name="onboard_dont_know">На знаешь что выбрать?</string>
     <string name="onboard_help">Пройти профориентацию</string>
+    <string name="test_name">Тест\nна профориентацию</string>
+    <string name="test_choose">Выберите один из вариантов ответа</string>
 </resources>
