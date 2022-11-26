@@ -34,7 +34,7 @@ class RegisterFragment: Fragment() {
             setContent {
                 AppCompatTheme {
                     RegisterScreen(viewModel = viewModel) {
-                        viewLifecycleOwner.lifecycleScope.launch {
+                        /*viewLifecycleOwner.lifecycleScope.launch {
                             viewModel.sendUser {
                                 if (it.isSuccessful) {
                                     val json = gson.toJson(it.body())
@@ -51,9 +51,9 @@ class RegisterFragment: Fragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
-//                                navigateToOnboard() // Для тестов
                             }
-                        }
+                        }*/
+                        navigateToOnboard() // Для тестов
                     }
                 }
             }

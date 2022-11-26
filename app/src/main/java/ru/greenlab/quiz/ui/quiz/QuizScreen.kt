@@ -28,7 +28,7 @@ import ru.greenlab.quiz.ui.theme.grey
 @Composable
 fun QuizScreen(
     questions: List<Question>,
-    onSubmitClick: () -> Unit,
+    onSubmitClick: (String) -> Unit,
     onFinalSubmit: () -> Unit
 ) {
     val currentPosition = remember { mutableStateOf(0) }
@@ -54,11 +54,13 @@ fun QuizScreen(
             question = questions[currentPosition.value],
             radioOptions = radioOptions,
             onSubmitClick = {
-                onSubmitClick()
-                if (currentPosition.value < questions.size)
+                onSubmitClick(selectedOption)
+                if (currentPosition.value < questions.lastIndex)
                     currentPosition.value++
-                else
+                else {
+                    onSubmitClick(selectedOption)
                     onFinalSubmit()
+                }
             },
             selectedOption = selectedOption,
             onOptionSelected = onOptionSelected
@@ -151,7 +153,7 @@ private fun QuizScreenPreview_Light() {
             questions = listOf(
                 Question("1", "Whaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat?"),
                 Question("2", "What?"),
-                Question("3", "What?")
+                Question("3", "Whaaaaaat?")
             ),
             onSubmitClick = {},
             onFinalSubmit = {}

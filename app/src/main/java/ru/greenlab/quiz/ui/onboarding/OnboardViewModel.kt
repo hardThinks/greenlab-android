@@ -11,6 +11,7 @@ import ru.greenlab.quiz.dto.Category
 import ru.greenlab.quiz.networkUtils.ApiClient
 import ru.greenlab.quiz.networkUtils.BASE_URL
 import ru.greenlab.quiz.networkUtils.GreenLabService
+import ru.greenlab.quiz.networkUtils.coroutineHandler
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +23,7 @@ class OnboardViewModel @Inject constructor() : ViewModel() {
     val categories = MutableStateFlow<List<Category>>(emptyList())
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineHandler) {
             val response = service.listCategories().awaitResponse()
             response.body()?.let { categories.value = it }
         }
