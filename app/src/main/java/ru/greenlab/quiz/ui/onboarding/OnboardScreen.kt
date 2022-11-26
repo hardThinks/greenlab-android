@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -129,7 +130,7 @@ private fun SecondScreen(
         )
     }
 
-    Box() {
+    Box {
         Image(
             painter = painterResource(id = R.drawable.long_logo),
             modifier = Modifier
@@ -153,7 +154,19 @@ private fun SecondScreen(
 
 @Composable
 private fun ThirdScreen(onClick: () -> Unit) {
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 30.dp, vertical = 40.dp)
+            .clickable { onClick() },
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = stringResource(id = R.string.onboard_directions),
+            style = MaterialTheme.typography.h4,
+            textDecoration = TextDecoration.Underline
+        )
+    }
 }
 
 @Preview(showSystemUi = true)
