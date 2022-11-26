@@ -10,8 +10,7 @@ import ru.greenlab.quiz.ui.theme.GreenLabTheme
 @Composable
 fun OnBoardScreen() {
     Row {
-        Text(text = "Hello ")
-        Text(text = "World")
+
     }
 }
 

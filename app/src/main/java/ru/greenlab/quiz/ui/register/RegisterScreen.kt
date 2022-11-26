@@ -83,6 +83,10 @@ fun RegisterButton(
     Button(
         modifier = modifier,
         onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.onPrimary
+        )
     ) {
         Text(
             text = "Зарегистрировать",
