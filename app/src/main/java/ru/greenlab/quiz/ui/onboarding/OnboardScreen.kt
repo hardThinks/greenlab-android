@@ -38,7 +38,7 @@ fun OnBoardScreen(
     onCategoryClick: (Category) -> Unit,
     onUnknownClick: () -> Unit
 ) {
-    var currentScreen by remember { mutableStateOf(OnboardState.Third) }
+    var currentScreen by remember { mutableStateOf(OnboardState.First) }
 
     when (currentScreen) {
         OnboardState.First -> {
