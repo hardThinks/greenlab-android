@@ -35,7 +35,9 @@ fun Categories(categories: List<Category>) {
 private fun CategoryItem(category: Category) {
     Card(
         border = BorderStroke(width = 4.dp, color = Color.Black),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 15.dp)
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             Row(modifier = Modifier

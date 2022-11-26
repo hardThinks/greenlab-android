@@ -23,7 +23,7 @@ class OnboardViewModel @Inject constructor() : ViewModel() {
 
     private val service = retrofit.create<GreenLabService>()
 
-    var categories = MutableStateFlow<List<Category>>(emptyList())
+    val categories = MutableStateFlow<List<Category>>(emptyList())
 
     init {
         viewModelScope.launch {

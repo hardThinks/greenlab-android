@@ -8,9 +8,9 @@ import ru.greenlab.quiz.dto.User
 const val BASE_URL = "http://192.168.171.153:8000/v1/"
 
 interface GreenLabService {
-    @GET("users")
+    @GET("users/")
     fun listUsers(): Call<List<User>>
 
-    @GET("categories")
+    @GET("categories/")
     fun listCategories(): Call<List<Category>>
 }

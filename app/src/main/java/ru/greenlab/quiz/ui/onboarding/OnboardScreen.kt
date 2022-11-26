@@ -50,7 +50,7 @@ fun OnBoardScreen(
         }
 
         OnboardState.Third -> {
-            ThirdScreen {
+            ThirdScreen(categories) {
                 onBoardEnded()
             }
         }
@@ -160,7 +160,10 @@ private fun SecondScreen(
 }
 
 @Composable
-private fun ThirdScreen(onClick: () -> Unit) {
+private fun ThirdScreen(
+    categories: List<Category>,
+    onClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -173,6 +176,7 @@ private fun ThirdScreen(onClick: () -> Unit) {
             style = MaterialTheme.typography.h4,
             textDecoration = TextDecoration.Underline
         )
+        Categories(categories = categories)
     }
 }
 
