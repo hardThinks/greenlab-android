@@ -1,5 +1,7 @@
 package ru.greenlab.quiz.ui.register
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.google.accompanist.appcompattheme.AppCompatTheme
+import com.google.gson.Gson
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import ru.greenlab.quiz.R
@@ -18,19 +21,28 @@ import ru.greenlab.quiz.ui.theme.GreenLabTheme
 
 class RegisterFragment: Fragment() {
     private val viewModel by viewModels<RegisterViewModel>()
+    private val gson = Gson()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val prefs = requireActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+
         return ComposeView(requireContext()).apply {
             setContent {
                 AppCompatTheme {
                     RegisterScreen(viewModel = viewModel) {
                         viewLifecycleOwner.lifecycleScope.launch {
                             viewModel.sendUser {
-                                /*if (it.isSuccessful) {
+                                if (it.isSuccessful) {
+                                    val json = gson.toJson(it.body())
+
+                                    prefs.edit()
+                                        .putString("user", json)
+                                        .apply()
+
                                     navigateToOnboard()
                                 } else {
                                     Toast.makeText(
@@ -38,8 +50,8 @@ class RegisterFragment: Fragment() {
                                         "Login failed",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                }*/
-                                navigateToOnboard() // Для тестов
+                                }
+//                                navigateToOnboard() // Для тестов
                             }
                         }
                     }
