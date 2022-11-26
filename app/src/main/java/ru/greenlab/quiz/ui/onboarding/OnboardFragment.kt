@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import ru.greenlab.quiz.R
@@ -13,6 +14,8 @@ import ru.greenlab.quiz.ui.theme.GreenLabTheme
 
 @AndroidEntryPoint
 class OnboardFragment: Fragment() {
+    private val viewModel by viewModels<OnboardViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
