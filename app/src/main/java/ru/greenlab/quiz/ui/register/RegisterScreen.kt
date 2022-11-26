@@ -90,7 +90,7 @@ fun RegisterButton(
         onClick = onClick,
     ) {
         Text(
-            text = "Зарегистрировать",
+            text = "Зарегистрироваться",
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h5
         )

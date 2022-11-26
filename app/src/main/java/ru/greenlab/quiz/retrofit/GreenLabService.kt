@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import ru.greenlab.quiz.dto.Category
 import ru.greenlab.quiz.dto.User
 
-val BASE_URL = "192.168.171.153:8000/v1/"
+const val BASE_URL = "http://192.168.171.153:8000/v1/"
 
 interface GreenLabService {
     @GET("users")

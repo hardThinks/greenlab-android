@@ -4,6 +4,9 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -21,28 +24,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.greenlab.quiz.R
 import com.google.accompanist.appcompattheme.AppCompatTheme
+import ru.greenlab.quiz.dto.Category
 
 enum class OnboardState {
-    first, second, third
+    First, Second, Third
 }
 
 @Composable
-fun OnBoardScreen(onBoardEnded: () -> Unit) {
-    var currentScreen by remember { mutableStateOf(OnboardState.third) }
+fun OnBoardScreen(
+    categories: List<Category>,
+    onBoardEnded: () -> Unit
+) {
+    var currentScreen by remember { mutableStateOf(OnboardState.First) }
 
     when (currentScreen) {
-        OnboardState.first -> {
+        OnboardState.First -> {
             FirstScreen {
-                currentScreen = OnboardState.second
+                currentScreen = OnboardState.Second
             }
         }
-        OnboardState.second -> {
+        OnboardState.Second -> {
             SecondScreen {
-                currentScreen = OnboardState.third
+                currentScreen = OnboardState.Third
             }
         }
 
-        OnboardState.third -> {
+        OnboardState.Third -> {
             ThirdScreen {
                 onBoardEnded()
             }
@@ -173,7 +180,7 @@ private fun ThirdScreen(onClick: () -> Unit) {
 @Composable
 fun OnBoardPreview_Light() {
     AppCompatTheme {
-        OnBoardScreen {}
+        OnBoardScreen(emptyList()) {}
     }
 }
 
@@ -181,6 +188,6 @@ fun OnBoardPreview_Light() {
 @Composable
 fun OnBoardPreview_Dark() {
     AppCompatTheme {
-        OnBoardScreen {}
+        OnBoardScreen(emptyList()) {}
     }
 }

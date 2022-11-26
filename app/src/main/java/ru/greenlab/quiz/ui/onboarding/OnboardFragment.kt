@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,7 +28,9 @@ class OnboardFragment: Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 GreenLabTheme {
-                    OnBoardScreen {
+                    val categories by remember { mutableStateOf(viewModel.categories.value) }
+
+                    OnBoardScreen(categories) {
                         Navigation.findNavController(
                             requireActivity().findViewById(R.id.nav_host_fragment))
                             .navigate(R.id.action_onboardFragment_to_quizFragment)
