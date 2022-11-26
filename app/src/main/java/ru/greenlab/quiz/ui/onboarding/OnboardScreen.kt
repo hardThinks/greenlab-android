@@ -2,12 +2,14 @@ package ru.greenlab.quiz.ui.onboarding
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -24,26 +26,34 @@ enum class OnboardState {
 }
 
 @Composable
-fun OnBoardScreen() {
-    var currentScreen by remember { mutableStateOf(OnboardState.first) }
+fun OnBoardScreen(onBoardEnded: () -> Unit) {
+    var currentScreen by remember { mutableStateOf(OnboardState.third) }
 
     when (currentScreen) {
         OnboardState.first -> {
-            firstScreen()
+            FirstScreen {
+                currentScreen = OnboardState.second
+            }
         }
         OnboardState.second -> {
-
+            SecondScreen {
+                currentScreen = OnboardState.third
+            }
         }
 
         OnboardState.third -> {
-
+            ThirdScreen {
+                onBoardEnded()
+            }
         }
     }
 }
 
 @Composable
-private fun firstScreen() {
-    Box {
+private fun FirstScreen(
+    onClick: () -> Unit
+) {
+    Box(modifier = Modifier.clickable { onClick() }) {
         Image(
             painter = painterResource(id = R.drawable.rectangle),
             contentDescription = null,
@@ -93,11 +103,64 @@ private fun firstScreen() {
     }
 }
 
+@Composable
+private fun SecondScreen(
+    onClick: () -> Unit
+)  {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 30.dp, vertical = 40.dp)
+            .clickable { onClick() },
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Карьерный путь",
+            style = MaterialTheme.typography.h4,
+            fontWeight = FontWeight.Bold
+        )
+
+        Text(
+            modifier = Modifier.padding(top = 20.dp),
+            text = stringResource(id = R.string.onboard_career),
+            style = MaterialTheme.typography.body1,
+            fontWeight = FontWeight.Normal,
+            fontSize = 20.sp
+        )
+    }
+
+    Box() {
+        Image(
+            painter = painterResource(id = R.drawable.long_logo),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 20.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.FillWidth,
+            contentDescription = null
+        )
+        Image(
+            painter = painterResource(id = R.drawable.chel2),
+            modifier = Modifier
+                .scale(1.5f)
+                .rotate(45f)
+                .padding(100.dp)
+                .align(Alignment.BottomCenter),
+            contentDescription = null
+        )
+    }
+}
+
+@Composable
+private fun ThirdScreen(onClick: () -> Unit) {
+
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun OnBoardPreview_Light() {
     AppCompatTheme {
-        OnBoardScreen()
+        OnBoardScreen {}
     }
 }
 
@@ -105,6 +168,6 @@ fun OnBoardPreview_Light() {
 @Composable
 fun OnBoardPreview_Dark() {
     AppCompatTheme {
-        OnBoardScreen()
+        OnBoardScreen {}
     }
 }
