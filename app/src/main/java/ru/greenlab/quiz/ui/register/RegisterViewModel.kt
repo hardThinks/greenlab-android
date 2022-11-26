@@ -9,9 +9,10 @@ import retrofit2.Response
 import retrofit2.awaitResponse
 import retrofit2.create
 import ru.greenlab.quiz.dto.User
-import ru.greenlab.quiz.retrofit.ApiClient
-import ru.greenlab.quiz.retrofit.BASE_URL
-import ru.greenlab.quiz.retrofit.GreenLabService
+import ru.greenlab.quiz.networkUtils.ApiClient
+import ru.greenlab.quiz.networkUtils.BASE_URL
+import ru.greenlab.quiz.networkUtils.GreenLabService
+import ru.greenlab.quiz.networkUtils.coroutineHandler
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +28,7 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
     suspend fun sendUser(
         callBack: (Response<User>) -> Unit
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineHandler) {
             val response = service.createUser(
                 User(
                     name = userName.value,

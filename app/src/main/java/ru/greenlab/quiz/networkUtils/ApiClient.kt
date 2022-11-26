@@ -1,4 +1,4 @@
-package ru.greenlab.quiz.retrofit
+package ru.greenlab.quiz.networkUtils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

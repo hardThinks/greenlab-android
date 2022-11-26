@@ -30,7 +30,7 @@ class RegisterFragment: Fragment() {
                     RegisterScreen(viewModel = viewModel) {
                         viewLifecycleOwner.lifecycleScope.launch {
                             viewModel.sendUser {
-                                if (it.isSuccessful) {
+                                /*if (it.isSuccessful) {
                                     navigateToOnboard()
                                 } else {
                                     Toast.makeText(
@@ -38,7 +38,8 @@ class RegisterFragment: Fragment() {
                                         "Login failed",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                }
+                                }*/
+                                navigateToOnboard() // Для тестов
                             }
                         }
                     }
