@@ -10,16 +10,14 @@ import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import ru.greenlab.quiz.dto.Category
+import ru.greenlab.quiz.retrofit.ApiClient
 import ru.greenlab.quiz.retrofit.BASE_URL
 import ru.greenlab.quiz.retrofit.GreenLabService
 import javax.inject.Inject
 
 @HiltViewModel
 class OnboardViewModel @Inject constructor() : ViewModel() {
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    private val retrofit = ApiClient.getClient(BASE_URL)
 
     private val service = retrofit.create<GreenLabService>()
 
