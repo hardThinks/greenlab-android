@@ -1,12 +1,12 @@
 package ru.greenlab.quiz.ui.onboarding
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import ru.greenlab.quiz.R
 import com.google.accompanist.appcompattheme.AppCompatTheme
 import ru.greenlab.quiz.dto.Category
+import ru.greenlab.quiz.ui.theme.grey
 
 enum class OnboardState {
     First, Second, Third
@@ -33,9 +35,10 @@ enum class OnboardState {
 @Composable
 fun OnBoardScreen(
     categories: List<Category>,
-    onBoardEnded: () -> Unit
+    onCategoryClick: (Category) -> Unit,
+    onUnknownClick: () -> Unit
 ) {
-    var currentScreen by remember { mutableStateOf(OnboardState.First) }
+    var currentScreen by remember { mutableStateOf(OnboardState.Third) }
 
     when (currentScreen) {
         OnboardState.First -> {
@@ -50,9 +53,11 @@ fun OnBoardScreen(
         }
 
         OnboardState.Third -> {
-            ThirdScreen(categories) {
-                onBoardEnded()
-            }
+            ThirdScreen(
+                categories =  categories,
+                onCategoryClick = onCategoryClick,
+                onUnknownClick = onUnknownClick
+            )
         }
     }
 }
@@ -162,13 +167,13 @@ private fun SecondScreen(
 @Composable
 private fun ThirdScreen(
     categories: List<Category>,
-    onClick: () -> Unit
+    onCategoryClick: (Category) -> Unit,
+    onUnknownClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 30.dp, vertical = 40.dp)
-            .clickable { onClick() },
+            .padding(horizontal = 30.dp, vertical = 40.dp),
         horizontalAlignment = Alignment.Start
     ) {
         Text(
@@ -176,7 +181,47 @@ private fun ThirdScreen(
             style = MaterialTheme.typography.h4,
             textDecoration = TextDecoration.Underline
         )
-        Categories(categories = categories)
+
+        Categories(categories = categories, onClick = onCategoryClick)
+
+        Text(
+            text = stringResource(id = R.string.onboard_dont_know),
+            fontWeight = FontWeight.Bold,
+            color = grey,
+            modifier = Modifier.padding(top = 25.dp, bottom = 15.dp)
+        )
+
+        Card(
+            border = BorderStroke(width = 4.dp, color = Color.Black),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 15.dp)
+                .clickable { onUnknownClick() }
+        ) {
+            Column(modifier = Modifier.padding(10.dp)) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Start)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.onboard_help),
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Icon(
+                        modifier = Modifier
+                            .scale(2.5f)
+                            .padding(end = 3.dp, top = 3.dp),
+                        painter = painterResource(id = R.drawable.arrow),
+                        contentDescription = null
+                    )
+                }
+            }
+        }
+
     }
 }
 
@@ -184,7 +229,7 @@ private fun ThirdScreen(
 @Composable
 fun OnBoardPreview_Light() {
     AppCompatTheme {
-        OnBoardScreen(emptyList()) {}
+        OnBoardScreen(emptyList(), {}, {})
     }
 }
 
@@ -192,6 +237,6 @@ fun OnBoardPreview_Light() {
 @Composable
 fun OnBoardPreview_Dark() {
     AppCompatTheme {
-        OnBoardScreen(emptyList()) {}
+        OnBoardScreen(emptyList(), {}, {})
     }
 }

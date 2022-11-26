@@ -19,6 +19,11 @@
         <action
             android:id="@+id/action_quizFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
+        <argument
+            android:name="category"
+            app:argType="ru.greenlab.quiz.dto.Category"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"

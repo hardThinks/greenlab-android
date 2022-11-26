@@ -1,6 +1,7 @@
 package ru.greenlab.quiz.ui.onboarding
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,21 +24,30 @@ import ru.greenlab.quiz.dto.Category
 import ru.greenlab.quiz.ui.theme.grey
 
 @Composable
-fun Categories(categories: List<Category>) {
+fun Categories(
+    categories: List<Category>,
+    onClick: (Category) -> Unit
+) {
     LazyColumn {
-        items(categories) {
-            CategoryItem(it)
+        items(categories) { category ->
+            CategoryItem(category) {
+                onClick(category)
+            }
         }
     }
 }
 
 @Composable
-private fun CategoryItem(category: Category) {
+private fun CategoryItem(
+    category: Category,
+    onClick: (Category) -> Unit
+) {
     Card(
         border = BorderStroke(width = 4.dp, color = Color.Black),
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 15.dp)
+            .clickable { onClick(category) }
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             Row(modifier = Modifier
@@ -76,6 +86,6 @@ private fun ItemPreview() {
             "123",
             "AAAAAAAAAAAAAAA",
             "This is cool"
-        ))
+        )) {}
     }
 }
