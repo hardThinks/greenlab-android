@@ -47,7 +47,7 @@ class RegisterFragment: Fragment() {
                                 } else {
                                     Toast.makeText(
                                         requireContext(),
-                                        "Пользователь с таким номером телефона уже прошел тест",
+                                        "Заполнены не все поля или пользователь с таким номером телефона уже прошел тест",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
