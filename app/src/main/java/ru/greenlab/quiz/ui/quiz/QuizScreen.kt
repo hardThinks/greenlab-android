@@ -58,7 +58,6 @@ fun QuizScreen(
                 if (currentPosition.value < questions.lastIndex)
                     currentPosition.value++
                 else {
-                    onSubmitClick(selectedOption)
                     onFinalSubmit()
                 }
             },
