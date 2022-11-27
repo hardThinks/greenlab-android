@@ -23,12 +23,13 @@ val greenLabLight = lightColors(
     primary = green,
     onPrimary = white,
     secondary = blueLight,
-    onSecondary = black
+    onSecondary = black,
+    surface = grey
 )
 
 val greenLabDark = darkColors(
     primary = greenDark,
-    surface = blue,
+    surface = grey,
     onSurface = white,
     onPrimary = white
 )

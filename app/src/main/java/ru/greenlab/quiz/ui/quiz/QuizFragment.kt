@@ -52,10 +52,9 @@ class QuizFragment : Fragment() {
                                 viewLifecycleOwner.lifecycleScope.launch {
                                     viewModel.sendResult {
                                         if (it.isSuccessful) {
-                                            val bundle = Bundle()
-                                            bundle.putParcelable("listUserResult", it.body())
-
-                                            navigateToResult(bundle)
+                                            val json = gson.toJson(it.body())
+                                            prefs.edit().putString("listUserResult", json).apply()
+                                            navigateToResult()
                                         } else {
                                             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                                         }
@@ -69,9 +68,9 @@ class QuizFragment : Fragment() {
         }
     }
 
-    private fun navigateToResult(bundle: Bundle) {
+    private fun navigateToResult() {
         Navigation.findNavController(requireActivity().findViewById(R.id.nav_host_fragment))
-            .navigate(R.id.action_quizFragment_to_resultFragment, bundle)
+            .navigate(R.id.action_quizFragment_to_resultFragment)
     }
 
     private fun toEnglishEquivalent(answer: String): String {
