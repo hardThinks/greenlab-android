@@ -55,8 +55,6 @@ class QuizFragment : Fragment() {
                                             val json = gson.toJson(it.body())
                                             prefs.edit().putString("listUserResult", json).apply()
                                             navigateToResult()
-                                        } else {
-                                            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                                         }
                                     }
                                 }
