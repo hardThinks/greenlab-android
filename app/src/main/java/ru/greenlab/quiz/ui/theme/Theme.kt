@@ -39,10 +39,7 @@ fun GreenLabTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val appColors = when (darkTheme) {
-        true -> greenLabDark
-        false -> greenLabLight
-    }
+    val appColors = greenLabLight
 
     MaterialTheme(
         colors = appColors,

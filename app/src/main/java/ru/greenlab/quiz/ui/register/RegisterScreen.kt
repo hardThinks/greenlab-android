@@ -67,7 +67,7 @@ fun RegisterScreen(
         }
 
         InputField(
-            label = "Город проведения мероприятия",
+            label = "Город",
             text = inputCity
         ) {
             inputCity = it
@@ -122,6 +122,7 @@ fun InputField(
 ) {
     OutlinedTextField(
         value = text,
+        singleLine = true,
         onValueChange = onChange,
         label = { Text(label) }
     )
