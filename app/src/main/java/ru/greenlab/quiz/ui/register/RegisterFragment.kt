@@ -47,7 +47,7 @@ class RegisterFragment: Fragment() {
                                 } else {
                                     Toast.makeText(
                                         requireContext(),
-                                        "Login failed",
+                                        "Пользователь с таким номером телефона уже прошел тест",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
